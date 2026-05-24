@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple calculator</title>
+    <style>
+        h1 {
+            color: #160e0e;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: beige;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            color: violet;
+            background-color: beige;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            color: thistle;
+            background-color: rgb(108, 74, 74);
+        }
+    </style>
+</head>
+<body>
+    <div id="calculator">
+        <h1>Simple Calculator</h1>
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
+        <button onclick="calculate('add')">Add</button>
+        <button onclick="calculate('sub')">Subtract</button>
+        <button onclick="calculate('mul')">Multiply</button>
+        <button onclick="calculate('div')">Divide</button>
+        
+        </div>
+        <p id="result"></p>
+        <script>
+            calculate=(operation)=>{
+            const a=parseFloat(document.getElementById('num1').value);
+            const b=parseFloat(document.getElementById('num2').value);
+            var result=document.getElementById('result');
+            if(isNaN(a) || isNaN(b)){
+                result.textContent='Please enter valid numbers';
+                return;
+            }
+       
+            switch(operation){
+                case 'add':
+                    result.textContent=`Result: ${a + b}`;
+                    break;
+                case 'sub':
+                    result.textContent=`Result: ${a - b}`;
+                    break;
+                case 'mul':
+                    result.textContent=`Result: ${a * b}`;
+                    break;
+                case 'div':
+                    if(b===0){
+                        result.textContent='Cannot divide by zero';
+                    }else{
+                        result.textContent=`Result: ${a / b}`;
+                    }
+                    break;
+                default:
+                    result.textContent='Invalid operation';
+            }
+             }
+             const visibility=document.getElementById('calculator');
+             addEventListener('click',()=>{
+                visibility.style.display='hidden';
+             });
+            </script>
+</body>
+</html>
